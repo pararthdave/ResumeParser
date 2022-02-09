@@ -14,7 +14,7 @@ with fileupload:
         if resume is not None:
             st.write("File Uploaded Successfully Wait for Result")
 st.markdown('##')
-st.markdown('##')
+st.markdown('##') 
 # with result:
 #     st.header("Result")
 

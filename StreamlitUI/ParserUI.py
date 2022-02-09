@@ -1,22 +1,20 @@
-import streamlit as st
-header= st.container()
-fileupload= st.container()
-result=st.container()
-
-with header:
-    st.title("Welcome to my Resume Parser Project!")
-    st.text("In this project we are doing parsing using nlp and scipy Library")
-
-with fileupload:
-    st.header("Upload Your Resume") 
-    resume=st.file_uploader("Upload Your Resume",type=["pdf","docx","txt"])
-    if st.button("Upload"):
-        if resume is not None:
-            st.write("File Uploaded Successfully Wait for Result")
+import streamlit as st  
+st.sidebar.title("Resume Parser")
+resume=st.sidebar.file_uploader("Upload Your Resume",type=["pdf"])
+if st.sidebar.button("Upload"):
+    if resume is not None:
+        st.success("File Uploaded Successfully Wait for Result")
+    else:
+        st.error("Please select a pdf file!")
 st.markdown('##')
+<<<<<<< HEAD
 st.markdown('##') 
 # with result:
 #     st.header("Result")
 
 #     result=pd.read_csv('data1.csv')
 #     st.write(result.head())
+=======
+st.markdown('##')
+st.sidebar.text("Made with ❤️ by Team 3, Searce Inc.")
+>>>>>>> 6eaa7916bb77e0dacade9992d3b2b6bc4f9264d5

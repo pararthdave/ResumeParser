@@ -7,14 +7,5 @@ if st.sidebar.button("Upload"):
     else:
         st.error("Please select a pdf file!")
 st.markdown('##')
-<<<<<<< HEAD
-st.markdown('##') 
-# with result:
-#     st.header("Result")
-
-#     result=pd.read_csv('data1.csv')
-#     st.write(result.head())
-=======
 st.markdown('##')
 st.sidebar.text("Made with ❤️ by Team 3, Searce Inc.")
->>>>>>> 6eaa7916bb77e0dacade9992d3b2b6bc4f9264d5

@@ -16,7 +16,7 @@ from nltk.corpus import stopwords
 nlp = spacy.load('en_core_web_sm')
 import pandas as pd
 import pdftotext
-from spacy.matcher import phrasematcher, matcher
+from spacy.matcher import phrasematcher, Matcher, matcher, PhraseMatcher
 import os
 
 
@@ -692,13 +692,9 @@ class ResumeParser:
     '''Accepts text as string and returns the first occurence of a phone number
     '''
     try:
-
-      return list(iter(phonenumbers.PhoneNumberMatcher(text, None)))[0].raw_string.strip()
+      return re.search(re.compile(r'(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})'), resume_text).group().strip()
     except:
-      try:
-        return re.search(re.compile(r'(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})'), resume_text).group().strip()
-      except:
-        return ""
+      return ""
 
   def extract_email(doc):
     email = re.findall("[\w.+-]+@[\w-]+\.[\w.-]+", doc)

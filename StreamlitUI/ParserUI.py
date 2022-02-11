@@ -1,16 +1,22 @@
 import streamlit as st  
-# from resumeparser_extractionfunctions.py import ResumeParser
+from resumeparser_extractionfunctions import ResumeParser
 from parsepdf import PdfParse
-# parser=ResumeParser
-psr=PdfParse()
+import pdftotext
+parser=ResumeParser()   
+
 st.sidebar.title("Resume Parser")
 resume=st.sidebar.file_uploader("Upload Your Resume",type=["pdf"])
 if st.sidebar.button("Upload"):
     if resume is not None:
-        file=psr
-        st.text(psr)
+        # f=psr(resume)
+        with open(resume, "rb") as f:
+            pdf = pdftotext.PDF(f)
+        finalpg=[]
+        for page in pdf:
+            pg=page.strip()
+            finalpg.append(pg)
         st.success("File Uploaded Successfully Wait for Result")
-        st.text("NAME: ",)
+        st.text("NAME: ",parser.extract_name(finalpg))
         st.text("EMAIL: ")
         st.text("CONTACT: ")
         st.text("EMAIL: ")

@@ -17,7 +17,6 @@ nlp = spacy.load('en_core_web_sm')
 import pandas as pd
 import pdftotext
 from spacy.matcher import phrasematcher, matcher
-import PYPDF2
 import os
 
 

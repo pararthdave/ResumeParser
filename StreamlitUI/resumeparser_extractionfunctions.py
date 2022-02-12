@@ -16,12 +16,11 @@ from nltk.corpus import stopwords
 nlp = spacy.load('en_core_web_sm')
 import pandas as pd
 import pdftotext
-from spacy.matcher import phrasematcher, Matcher, matcher, PhraseMatcher
+from spacy.matcher import  Matcher, PhraseMatcher
 import os
 
-
 class ResumeParser:
-  def extract_experience(pdf_text):
+  def extract_experience(self, pdf_text):
     # Create sentance tokens from the text
     lines = [el.strip() for el in pdf_text.split("\n") if len(el) > 0]
     # Create word tokens from sentances
@@ -72,7 +71,7 @@ class ResumeParser:
     return (len(dates) - 1)
 
   # loading pretrained model
-  def extract_text(resume_text):
+  def extract_text(self,resume_text):
     nlp = spacy.load('en_core_web_sm')
     STOPWORDS = set(stopwords.words('english'))
     Education = ['BE','B.E.', 'B.E', 'BS', 'B.S', 
@@ -105,7 +104,7 @@ class ResumeParser:
             education.append(key)
     return education
 
-  def extract_skills(pdf_text):
+  def extract_skills(self,pdf_text):
     temp="""java
     javascript 
     html
@@ -167,7 +166,7 @@ class ResumeParser:
 
     return ans
 
-  def extract_hobby(resume_text):
+  def extract_hobby(self, resume_text):
     temp = """3D printing
     Acting
     Aeromodeling
@@ -677,7 +676,7 @@ class ResumeParser:
         break
     return result
 
-  def extract_location(text):
+  def extract_location(self, text):
     nlp = spacy.load('en_core_web_sm')
     doc = nlp(text)
     gpe = [] # countries, cities, states
@@ -688,7 +687,7 @@ class ResumeParser:
         return print("No location is mentioned in resume")
     return gpe
 
-  def extract_phone_number(resume_text):
+  def extract_phone_number(self, resume_text):
     '''Accepts text as string and returns the first occurence of a phone number
     '''
     try:
@@ -696,11 +695,12 @@ class ResumeParser:
     except:
       return ""
 
-  def extract_email(doc):
+  def extract_email(self, doc):
     email = re.findall("[\w.+-]+@[\w-]+\.[\w.-]+", doc)
     return email
-  matcher=Matcher(nlp.vocab)
-  def extract_name(resume_text):
+
+  def extract_name(self,resume_text):
+      matcher=Matcher(nlp.vocab)  
       nlp_text = nlp(resume_text)
       
       # First name and Last name are always Proper Nouns
@@ -714,7 +714,7 @@ class ResumeParser:
           span = nlp_text[start:end]
           return span.text
   matcher1=Matcher(nlp.vocab)
-  def extract_socialmedia(resume_text):
+  def extract_socialmedia(self, resume_text):
     linkedin = re.findall(r'linkedin.com/i?n?/?[\w\.-]+', resume_text)
     github = re.findall(r'github.com/i?n?/?[\w\.-]+', resume_text)
     return linkedin,github

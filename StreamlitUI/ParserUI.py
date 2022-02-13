@@ -1,6 +1,5 @@
 import streamlit as st  
 from resumeparser_extractionfunctions import ResumeParser
-from parsepdf import PdfParse
 import pdftotext
 import nltk
 from pdfminer.high_level import extract_pages

@@ -18,16 +18,17 @@ if st.sidebar.button("Upload"):
         for page in pdf:
             pg=page.strip()
             finalpg+=pg
-        st.success("File Uploaded Successfully Wait for Result")
         st.write("NAME: ",parser.extract_name(finalpg))
         st.write("CONTACT: ", parser.extract_phone_number(finalpg))
         st.write("EMAIL: ", str(parser.extract_email(finalpg)))
-        st.write("SOCIAL MEDIA: ", parser.extract_socialmedia(finalpg))
-        st.write("EDUCATION: ")
+        st.write("LINKEDIN: ", str(parser.extract_linkedin(finalpg)))
+        st.write("GITHUB: ", str(parser.extract_github(finalpg)))
+        st.write("EDUCATION: ", str(parser.extract_text(finalpg)))
         st.write("EXPERIENCE: ")
-        st.write("HOBBIES: ")
+        st.write("HOBBIES: ", str(parser.extract_hobby(finalpg)))
         st.write("SKILLS: ", parser.extract_skills(finalpg))
-        st.write("LOCATION: ", parser.extract_location(finalpg))
+        st.write("LANGUAGES: ", str(parser.extract_language(finalpg)))
+        st.write("LOCATION: ", str(parser.locationExtraction(finalpg)))
     else:
         st.error("Please select a PDF file!")
 st.sidebar.text("Made with ❤️ by Team 3, Searce Inc.")

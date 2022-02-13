@@ -129,6 +129,8 @@ class ResumeParser:
     lines = [nltk.word_tokenize(el) for el in lines]
     # Assign "Part of Speech" tags to each word
     lines = [nltk.pos_tag(el) for el in lines]
+    experience = '1/1/2000'
+    education = '1/1/2000'
 
 
     # Capture sentances which contain the term "Experience" and "Education"
@@ -137,8 +139,9 @@ class ResumeParser:
       # Discard tags from words and join all words
       sen = " ".join([words[0].lower() for words in sentance])
 
-
+      print("Sen: ",sen)
       if re.search('experience',sen):
+        
         sen_tokenised = nltk.word_tokenize(sen)
         tagged = nltk.pos_tag(sen_tokenised)
         # Create chunks of data using the recommended named entity chunker
@@ -149,6 +152,7 @@ class ResumeParser:
               # Extract Date from that sentance
               experience = leaf[0]
       if re.search('education',sen):
+        print("first")
         sen_tokenised = nltk.word_tokenize(sen)
         tagged = nltk.pos_tag(sen_tokenised)
         entities = nltk.chunk.ne_chunk(tagged)
@@ -168,7 +172,6 @@ class ResumeParser:
     dates = [dt for dt in rrule(MONTHLY, dtstart=strt_dt, until=end_dt)]
 
     # Return experience as number of months
-    print ("Experience in Months: ")
     return (len(dates) - 1)
   # loading pretrained model
 

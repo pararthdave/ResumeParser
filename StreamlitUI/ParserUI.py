@@ -23,9 +23,9 @@ if st.sidebar.button("Upload"):
         st.write("LINKEDIN: ", str(parser.extract_linkedin(finalpg)))
         st.write("GITHUB: ", str(parser.extract_github(finalpg)))
         st.write("EDUCATION: ", str(parser.extract_text(finalpg)))
-        st.write("EXPERIENCE: ")
+        st.write("EXPERIENCE: ", str(parser.extract_experience(finalpg)))
         st.write("HOBBIES: ", str(parser.extract_hobby(finalpg)))
-        st.write("SKILLS: ", parser.extract_skills(finalpg))
+        st.write("SKILLS: ", str(parser.extract_skills(finalpg)))
         st.write("LANGUAGES: ", str(parser.extract_language(finalpg)))
         st.write("LOCATION: ", str(parser.locationExtraction(finalpg)))
     else:
